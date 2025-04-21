@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - HomeBazaar</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease-in 1s forwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>HomeBazaar</h1>
+    <p class="tagline">From Home to Heart</p>
+  </header>
+  <main class="fade-in">
+    <form id="signupForm" class="fade-in">
+      <h2>Sign Up</h2>
+      
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+
+      <label for="accountType">Account Type:</label>
+      <select id="accountType" name="accountType" onchange="toggleBusinessFields()" required>
+        <option value="customer">Customer</option>
+        <option value="business">Business Owner</option>
+      </select>
+
+      <div id="businessDetails" style="display: none;">
+        <label for="businessName">Business Name:</label>
+        <input type="text" id="businessName" name="businessName" placeholder="Enter your business name">
+
+        <label for="productCategory">Product Category:</label>
+        <input type="text" id="productCategory" name="productCategory" placeholder="What products or services do you offer?">
+
+        <label for="businessDescription">Business Description:</label>
+        <textarea id="businessDescription" name="businessDescription" placeholder="Describe your business"></textarea>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+
+  <footer class="fade-in">
+    <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleBusinessFields() {
+      const accountType = document.getElementById('accountType').value;
+      const businessDetails = document.getElementById('businessDetails');
+      if (accountType === 'business') {
+        businessDetails.style.display = 'block';
+      } else {
+        businessDetails.style.display = 'none';
+      }
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const accountType = document.getElementById('accountType').value;
+      let message = 'Account created successfully!';
+      
+      if (accountType === 'business') {
+        const businessName = document.getElementById('businessName').value;
+        const productCategory = document.getElementById('productCategory').value;
+        const businessDescription = document.getElementById('businessDescription').value;
+        
+        if (!businessName || !productCategory || !businessDescription) {
+          alert('Please fill in all business details.');
+          return;
+        }
+      }
+      
+      alert(message);
+      document.getElementById('signupForm').reset();
+    });
+  </script>
+</body>
+</html>

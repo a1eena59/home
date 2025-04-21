@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Shops - HomeBazaar</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease-in 1s forwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .shop-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .shop-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .shop-card:hover {
+      transform: translateY(-5px);
+    }
+    .shop-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .shop-card-content {
+      padding: 15px;
+    }
+    .shop-card-content h3 {
+      margin: 0 0 10px;
+      color: #e65100;
+    }
+    .shop-card-content p {
+      margin: 0 0 10px;
+      color: #555;
+    }
+    .stars {
+      color: #ffc107;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>HomeBazaar</h1>
+    <p class="tagline">From Home to Heart</p>
+  </header>
+  <main class="fade-in">
+    <section>
+      <h2 style="text-align:center">Featured Local Businesses</h2>
+      <div class="shop-list">
+        <div class="shop-card">
+          <img src="spicevilla.jpg" alt="Spice Villa">
+          <div class="shop-card-content">
+            <h3>Spice Villa</h3>
+            <p>Authentic Kerala Cuisine with homemade spices and warmth.</p>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="decor.jpg" alt="Craft Nest">
+          <div class="shop-card-content">
+            <h3>Craft Nest</h3>
+            <p>Handmade gifts and artistic décor items for your home.</p>
+            <div class="stars">★★★★☆</div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="repair.jpg"FixItPro">
+          <div class="shop-card-content">
+            <h3>FixItPro</h3>
+            <p>Trusted handyman services for repairs, installations, and more.</p>
+            <div class="stars">★★★☆☆</div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="bakery.jpg" alt="Bake Bliss">
+          <div class="shop-card-content">
+            <h3>Bake Bliss</h3>
+            <p>Custom cakes, pastries, and breads baked with love.</p>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="plant.jpg" alt="Green Nook">
+          <div class="shop-card-content">
+            <h3>Green Nook</h3>
+            <p>Organic plants and DIY home garden kits for nature lovers.</p>
+            <div class="stars">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="fade-in">
+    <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
+  </footer>
+</body>
+</html>

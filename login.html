@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - HomeBazaar</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease-in 1s forwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>HomeBazaar</h1>
+    <p class="tagline">From Home to Heart</p>
+  </header>
+  <main>
+    <form action="shops.html" method="GET" class="fade-in">
+      <h2>Login</h2>
+      <label>Email:</label>
+      <input type="email" name="email" required>
+      <label>Password:</label>
+      <input type="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p style="text-align:center;">Don't have an account? <a href="signup.html">Sign up</a></p>
+  </main>
+  <footer class="fade-in">
+    <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
+  </footer>
+</body>
+</html>

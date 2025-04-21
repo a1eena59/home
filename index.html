@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomeBazaar</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease-in 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff7043;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1.4em;
+      margin-top: 10px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .hero, .about-us, .reviews {
+      background: #fff8e1;
+      padding: 40px 30px;
+      margin-bottom: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .hero h2, .about-us h3, .reviews h3 {
+      text-align: center;
+      color: #e65100;
+      margin-bottom: 20px;
+    }
+
+    .hero p, .about-us p {
+      font-size: 1.2em;
+      text-align: center;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .review {
+      background: #ffffff;
+      border-left: 5px solid #ff7043;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .review p {
+      font-size: 1.05em;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .review span {
+      font-style: italic;
+      color: #777;
+    }
+
+    footer {
+      background-color: #ff7043;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>HomeBazaar</h1>
+    <p class="tagline">From Home to Heart</p>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero fade-in">
+      <h2>Discover Hidden Treasures in Your Neighborhood</h2>
+      <p>Find delicious food, charming crafts, trusted services, and more — all from local small businesses. HomeBazaar is your gateway to supporting and enjoying the vibrant community around you.</p>
+    </section>
+
+    <section class="about-us fade-in">
+      <h3>About Us</h3>
+      <p>HomeBazaar is a platform built to connect people with small, local businesses in their area. Whether you’re looking for handmade crafts, local food, home services, or special deals, we make it easy to discover hidden gems in your neighborhood. By shopping local, you're strengthening communities and helping dreams thrive.</p>
+    </section>
+
+    <section class="reviews fade-in">
+      <h3>What Our Users Say</h3>
+      <div class="review">
+        <p>"HomeBazaar helped me find the best local bakery — now I’m a weekly customer!"</p>
+        <span>- Aisha R.</span>
+      </div>
+      <div class="review">
+        <p>"Supporting small businesses has never been easier. Love this platform!"</p>
+        <span>- Rahul M.</span>
+      </div>
+      <div class="review">
+        <p>"I booked a local handyman through HomeBazaar and the service was fantastic."</p>
+        <span>- Neha T.</span>
+      </div>
+      <div class="review">
+        <p>"The artisanal soaps I bought from a local maker were amazing. Thank you, HomeBazaar!"</p>
+        <span>- Manu K.</span>
+      </div>
+      <div class="review">
+        <p>"I discovered a home chef who now caters all our family events. Incredible!"</p>
+        <span>- Sneha J.</span>
+      </div>
+      <div class="review">
+        <p>"Their daily deals are unbeatable. A true gem for local finds."</p>
+        <span>- Aditya S.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fade-in">
+    <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
+  </footer>
+</body>
+</html>
