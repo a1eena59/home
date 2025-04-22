@@ -4,34 +4,335 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - HomeBazaar</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
+    /* Base styles */
+    :root {
+      --primary: #fe6845;
+      --primary-dark: #e05535;
+      --accent: #ffd166;
+      --light-bg: #fff8f6;
+      --dark-text: #333333;
+      --medium-text: #555555;
+      --light-text: #777777;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --border-radius: 12px;
+      --input-border: #e0e0e0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: var(--dark-text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Animations */
     .fade-in {
       opacity: 0;
       animation: fadeIn ease-in 1s forwards;
     }
+
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+      z-index: 1;
+    }
+    
+    header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      letter-spacing: -0.5px;
+    }
+    
+    .tagline {
+      font-style: italic;
+      font-size: 1.3em;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+    
+    .home-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .home-link:hover {
+      text-decoration: underline;
+    }
+    
+    .home-link span {
+      margin-right: 5px;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      width: 100%;
+    }
+    
+    /* Form styles */
+    form {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-top: -20px;
+      position: relative;
+      z-index: 10;
+      animation-delay: 0.2s;
+    }
+    
+    form h2 {
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: 1.8em;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    form h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--medium-text);
+    }
+    
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(254, 104, 69, 0.2);
+    }
+    
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(254, 104, 69, 0.4);
+    }
+
+    /* Additional links */
+    .additional-links {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--light-text);
+      animation-delay: 0.3s;
+    }
+    
+    .additional-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .additional-links a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: var(--light-text);
+    }
+    
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--input-border);
+    }
+    
+    .divider span {
+      padding: 0 10px;
+      font-size: 0.9rem;
+    }
+    
+    /* Social login */
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      background-color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .social-btn:hover {
+      background-color: var(--light-bg);
+      transform: translateY(-2px);
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      
+      .tagline {
+        font-size: 1.1em;
+      }
+      
+      form {
+        padding: 30px 20px;
+      }
+      
+      .home-link {
+        position: static;
+        display: inline-block;
+        margin-top: 15px;
+      }
+      
+      main {
+        padding: 30px 15px 40px;
+      }
     }
   </style>
 </head>
 <body>
   <header class="fade-in">
+    <a href="index.html" class="home-link"><span>←</span> Back Home</a>
     <h1>HomeBazaar</h1>
     <p class="tagline">From Home to Heart</p>
   </header>
+  
   <main>
     <form action="shops.html" method="GET" class="fade-in">
-      <h2>Login</h2>
-      <label>Email:</label>
-      <input type="email" name="email" required>
-      <label>Password:</label>
-      <input type="password" name="password" required>
+      <h2>Welcome Back</h2>
+      
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      
+      <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <div>
+          <input type="checkbox" id="remember" style="width: auto; margin-right: 5px; vertical-align: middle;">
+          <label for="remember" style="display: inline; font-weight: normal;">Remember me</label>
+        </div>
+        <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.9em;">Forgot password?</a>
+      </div>
+      
       <button type="submit">Login</button>
+      
+      <div class="divider">
+        <span>OR</span>
+      </div>
+      
+      <div class="social-login">
+        <button type="button" class="social-btn">Google</button>
+        <button type="button" class="social-btn">Facebook</button>
+      </div>
     </form>
-    <p style="text-align:center;">Don't have an account? <a href="signup.html">Sign up</a></p>
+    
+    <p class="additional-links fade-in">
+      Don't have an account? <a href="signup.html">Sign up now</a>
+    </p>
   </main>
+  
   <footer class="fade-in">
     <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
   </footer>

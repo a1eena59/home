@@ -4,9 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HomeBazaar</title>
-  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* Fade-in animation */
+    /* Base styles */
+    :root {
+      --primary: #fe6845;
+      --primary-dark: #e05535;
+      --accent: #ffd166;
+      --light-bg: #fff8f6;
+      --dark-text: #333333;
+      --medium-text: #555555;
+      --light-text: #777777;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --border-radius: 12px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: var(--dark-text);
+      line-height: 1.7;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    /* Animations */
     .fade-in {
       opacity: 0;
       animation: fadeIn ease-in 1s forwards;
@@ -16,155 +49,543 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fafafa;
-      color: #333;
-    }
-
-    header {
-      background-color: #ff7043;
+    
+    /* Button styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: var(--primary);
       color: white;
-      padding: 40px 20px;
-      text-align: center;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(254, 104, 69, 0.4);
     }
 
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+      z-index: 1;
+    }
+    
+    header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
     header h1 {
       margin: 0;
-      font-size: 3em;
+      font-size: 3.5em;
+      letter-spacing: -0.5px;
     }
-
+    
     .tagline {
       font-style: italic;
-      font-size: 1.4em;
-      margin-top: 10px;
+      font-size: 1.5em;
+      margin: 15px 0 30px;
+      opacity: 0.9;
     }
-
+    
     nav {
-      margin-top: 15px;
+      margin-top: 25px;
     }
-
+    
     nav a {
       margin: 0 15px;
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    /* Main content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-
+    
     main {
-      padding: 30px 20px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 60px 0;
+    }
+    
+    section {
+      margin-bottom: 60px;
+      animation-delay: 0.1s;
     }
 
-    .hero, .about-us, .reviews {
-      background: #fff8e1;
-      padding: 40px 30px;
-      margin-bottom: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    .hero h2, .about-us h3, .reviews h3 {
+    /* Hero section */
+    .hero {
+      background-color: var(--light-bg);
+      padding: 70px 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
       text-align: center;
-      color: #e65100;
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero h2 {
+      font-size: 2.4em;
+      color: var(--primary-dark);
+      margin-bottom: 25px;
+    }
+    
+    .hero p {
+      font-size: 1.25em;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: var(--medium-text);
+    }
+
+    /* Search section */
+    .search-section {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .search-section h3 {
+      color: var(--primary-dark);
+      font-size: 1.8em;
+      margin-bottom: 25px;
+    }
+    
+    .search-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
       margin-bottom: 20px;
     }
+    
+    .search-section input {
+      padding: 15px 20px;
+      width: 300px;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .search-section input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(254, 104, 69, 0.2);
+    }
 
-    .hero p, .about-us p {
+    /* Categories */
+    .categories {
+      padding: 40px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .categories h3 {
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    
+    .category-item {
+      padding: 25px 15px;
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 1.1em;
+      color: var(--primary-dark);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .category-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .category-item span {
+      display: block;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    /* Featured and Deals sections */
+    .featured, .deals, .success-stories, .about-us, .reviews {
+      padding: 40px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .featured h3, .deals h3, .success-stories h3, .about-us h3, .reviews h3 {
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+    
+    .featured-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .featured-item {
+      background: var(--light-bg);
+      padding: 25px;
+      border-radius: var(--border-radius);
+      transition: transform 0.3s ease;
+    }
+    
+    .featured-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .featured-item strong {
+      display: block;
+      margin-bottom: 5px;
       font-size: 1.2em;
-      text-align: center;
-      color: #444;
-      line-height: 1.7;
+      color: var(--primary-dark);
     }
-
-    .review {
-      background: #ffffff;
-      border-left: 5px solid #ff7043;
+    
+    /* Deals */
+    .deals ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .deals li {
+      background: var(--light-bg);
+      margin-bottom: 15px;
       padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border-radius: var(--border-radius);
+      font-size: 1.1em;
+      transition: transform 0.3s ease;
+    }
+    
+    .deals li:hover {
+      transform: translateX(5px);
+    }
+    
+    /* Success Stories */
+    .success-stories blockquote {
+      background: var(--light-bg);
+      border-left: 4px solid var(--accent);
+      margin: 25px 0;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      font-style: italic;
+      font-size: 1.1em;
+      position: relative;
+    }
+    
+    .success-stories blockquote::before {
+      content: '"';
+      font-size: 60px;
+      position: absolute;
+      top: -15px;
+      left: 10px;
+      opacity: 0.2;
+      color: var(--primary);
+    }
+    
+    .success-stories cite {
+      display: block;
+      text-align: right;
+      font-size: 1em;
+      color: var(--light-text);
+      margin-top: 10px;
     }
 
+    /* About Us */
+    .about-us p {
+      font-size: 1.15em;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--medium-text);
+      text-align: center;
+    }
+
+    /* Reviews */
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    
+    .review {
+      background: var(--light-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      position: relative;
+    }
+    
+    .review::before {
+      content: '"';
+      font-size: 60px;
+      color: rgba(254, 104, 69, 0.1);
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+    
     .review p {
       font-size: 1.05em;
-      margin-bottom: 10px;
-      color: #555;
+      color: var(--medium-text);
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
     }
-
+    
     .review span {
+      display: block;
       font-style: italic;
-      color: #777;
+      color: var(--light-text);
+      text-align: right;
     }
 
+    /* Footer */
     footer {
-      background-color: #ff7043;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
+      padding: 50px 20px 30px;
       text-align: center;
-      padding: 20px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .social-links {
+      margin: 20px 0;
+    }
+    
+    .social-links a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.2em;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .social-links a:hover {
+      opacity: 1;
+    }
+    
+    .copyright {
+      margin-top: 20px;
+      opacity: 0.7;
+      font-size: 0.9em;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5em;
+      }
+      
+      .tagline {
+        font-size: 1.2em;
+      }
+      
+      .hero h2 {
+        font-size: 1.8em;
+      }
+      
+      .search-section input {
+        width: 100%;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .featured-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .reviews-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="fade-in">
-    <h1>HomeBazaar</h1>
-    <p class="tagline">From Home to Heart</p>
-    <nav>
-      <a href="login.html">Login</a>
-      <a href="signup.html">Sign Up</a>
-    </nav>
+  <header>
+    <div class="container">
+      <h1 class="fade-in">HomeBazaar</h1>
+      <p class="tagline fade-in">From Home to Heart</p>
+      <nav class="fade-in">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
-
+  
   <main>
-    <section class="hero fade-in">
-      <h2>Discover Hidden Treasures in Your Neighborhood</h2>
-      <p>Find delicious food, charming crafts, trusted services, and more — all from local small businesses. HomeBazaar is your gateway to supporting and enjoying the vibrant community around you.</p>
-    </section>
-
-    <section class="about-us fade-in">
-      <h3>About Us</h3>
-      <p>HomeBazaar is a platform built to connect people with small, local businesses in their area. Whether you’re looking for handmade crafts, local food, home services, or special deals, we make it easy to discover hidden gems in your neighborhood. By shopping local, you're strengthening communities and helping dreams thrive.</p>
-    </section>
-
-    <section class="reviews fade-in">
-      <h3>What Our Users Say</h3>
-      <div class="review">
-        <p>"HomeBazaar helped me find the best local bakery — now I’m a weekly customer!"</p>
-        <span>- Aisha R.</span>
-      </div>
-      <div class="review">
-        <p>"Supporting small businesses has never been easier. Love this platform!"</p>
-        <span>- Rahul M.</span>
-      </div>
-      <div class="review">
-        <p>"I booked a local handyman through HomeBazaar and the service was fantastic."</p>
-        <span>- Neha T.</span>
-      </div>
-      <div class="review">
-        <p>"The artisanal soaps I bought from a local maker were amazing. Thank you, HomeBazaar!"</p>
-        <span>- Manu K.</span>
-      </div>
-      <div class="review">
-        <p>"I discovered a home chef who now caters all our family events. Incredible!"</p>
-        <span>- Sneha J.</span>
-      </div>
-      <div class="review">
-        <p>"Their daily deals are unbeatable. A true gem for local finds."</p>
-        <span>- Aditya S.</span>
-      </div>
-    </section>
+    <div class="container">
+      <section class="hero fade-in">
+        <h2>Discover Hidden Treasures in Your Neighborhood</h2>
+        <p>Find delicious food, charming crafts, trusted services, and more — all from local small businesses. HomeBazaar is your gateway to supporting and enjoying the vibrant community around you.</p>
+        <a href="#search" class="btn">Explore Now</a>
+      </section>
+    
+      <section id="search" class="search-section fade-in">
+        <h3>Find Local Gems Near You</h3>
+        <div class="search-container">
+          <input type="text" placeholder="Search for shops, services, or restaurants...">
+          <input type="text" placeholder="Enter your location">
+          <button class="btn">Search</button>
+        </div>
+      </section>
+    
+      <section class="categories fade-in">
+        <h3>Browse by Category</h3>
+        <div class="category-grid">
+          <div class="category-item"><span>🍲</span> Food</div>
+          <div class="category-item"><span>👗</span> Clothing</div>
+          <div class="category-item"><span>🔧</span> Services</div>
+          <div class="category-item"><span>🎨</span> Crafts</div>
+          <div class="category-item"><span>💻</span> Tech</div>
+        </div>
+      </section>
+    
+      <section class="featured fade-in">
+        <h3>Featured Businesses</h3>
+        <div class="featured-list">
+          <div class="featured-item">
+            <strong>Spice Villa</strong>
+            Authentic Kerala Cuisine with farm-fresh ingredients and traditional recipes passed down through generations.
+          </div>
+          <div class="featured-item">
+            <strong>Craft Nest</strong>
+            Handcrafted Home Decor made with sustainable materials and incredible attention to detail.
+          </div>
+          <div class="featured-item">
+            <strong>FixItPro</strong>
+            Local Repairs & Services with certified professionals and guaranteed satisfaction.
+          </div>
+        </div>
+      </section>
+    
+      <section class="deals fade-in">
+        <h3>Local Deals & Offers</h3>
+        <ul>
+          <li>🎂 20% off at Bake Bliss – this weekend only! Perfect for your special occasions.</li>
+          <li>🌱 Buy 1 Get 1 Free – Green Nook Garden Kits for your home gardening projects.</li>
+          <li>🛠️ Free consultation from FixItPro on first booking - expert advice at no cost.</li>
+        </ul>
+      </section>
+    
+      <section class="success-stories fade-in">
+        <h3>Success Stories</h3>
+        <blockquote>
+          "Thanks to HomeBazaar, I went from 10 to 100+ orders a month! The platform connected me with customers who truly appreciate handcrafted items and are willing to support local artisans."
+          <cite>- Meera, Craft Nest</cite>
+        </blockquote>
+        <blockquote>
+          "Our little café is now booked daily by new customers. Game changer! HomeBazaar gave us visibility we couldn't have achieved on our own."
+          <cite>- Ramesh, Spice Villa</cite>
+        </blockquote>
+      </section>
+    
+      <section id="about" class="about-us fade-in">
+        <h3>About Us</h3>
+        <p>HomeBazaar is a platform built to connect people with small, local businesses in their area. Whether you're looking for handmade crafts, local food, home services, or special deals, we make it easy to discover hidden gems in your neighborhood. By shopping local, you're strengthening communities and helping dreams thrive.</p>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="#" class="btn">Join Our Community</a>
+        </div>
+      </section>
+    
+      <section class="reviews fade-in">
+        <h3>What Our Users Say</h3>
+        <div class="reviews-container">
+          <div class="review">
+            <p>"HomeBazaar helped me find the best local bakery — now I'm a weekly customer! Their pastries are incredible and I never would have discovered them without this platform."</p>
+            <span>- Aisha R.</span>
+          </div>
+          <div class="review">
+            <p>"Supporting small businesses has never been easier. Love this platform! I've connected with amazing local artisans and service providers."</p>
+            <span>- Rahul M.</span>
+          </div>
+          <div class="review">
+            <p>"I booked a local handyman through HomeBazaar and the service was fantastic. Reliable, professional, and fairly priced."</p>
+            <span>- Neha T.</span>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer class="fade-in">
-    <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <h2>HomeBazaar</h2>
+        <p>Connecting communities through local businesses</p>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+        </div>
+        <p class="copyright">&copy; 2025 HomeBazaar. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

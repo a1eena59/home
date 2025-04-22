@@ -4,80 +4,399 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - HomeBazaar</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
+    /* Base styles */
+    :root {
+      --primary: #fe6845;
+      --primary-dark: #e05535;
+      --accent: #ffd166;
+      --light-bg: #fff8f6;
+      --dark-text: #333333;
+      --medium-text: #555555;
+      --light-text: #777777;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --border-radius: 12px;
+      --input-border: #e0e0e0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: var(--dark-text);
+      line-height: 1.7;
+    }
+
+    /* Animations */
     .fade-in {
       opacity: 0;
       animation: fadeIn ease-in 1s forwards;
     }
+
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+      z-index: 1;
+    }
+    
+    header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      letter-spacing: -0.5px;
+    }
+    
+    .tagline {
+      font-style: italic;
+      font-size: 1.3em;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+    
+    .home-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .home-link:hover {
+      text-decoration: underline;
+    }
+    
+    .home-link span {
+      margin-right: 5px;
+    }
+
+    /* Main content */
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    
+    /* Form styles */
+    form {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-top: -20px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    form h2 {
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: 1.8em;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    form h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--medium-text);
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(254, 104, 69, 0.2);
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(254, 104, 69, 0.4);
+    }
+    
+    /* Business details section */
+    #businessDetails {
+      padding: 15px;
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+    }
+    
+    /* Form sections */
+    .form-section {
+      margin-bottom: 20px;
+    }
+    
+    .form-section h3 {
+      font-size: 1.2em;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+    
+    /* Account type toggle */
+    .account-toggle {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .account-toggle label {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      background-color: #f5f5f5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .account-toggle label:first-of-type {
+      border-radius: 6px 0 0 6px;
+    }
+    
+    .account-toggle label:last-of-type {
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .account-toggle input[type="radio"] {
+      display: none;
+    }
+    
+    .account-toggle input[type="radio"]:checked + label {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    /* Password strength indicator */
+    .password-strength {
+      height: 5px;
+      margin-top: -15px;
+      margin-bottom: 20px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .password-strength-bar {
+      height: 100%;
+      width: 0;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      
+      .tagline {
+        font-size: 1.1em;
+      }
+      
+      form {
+        padding: 30px 20px;
+      }
+      
+      .home-link {
+        position: static;
+        display: inline-block;
+        margin-top: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <header class="fade-in">
+    <a href="index.html" class="home-link"><span>←</span> Back Home</a>
     <h1>HomeBazaar</h1>
     <p class="tagline">From Home to Heart</p>
   </header>
-  <main class="fade-in">
+  
+  <main>
     <form id="signupForm" class="fade-in">
-      <h2>Sign Up</h2>
+      <h2>Create Your Account</h2>
       
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-
-      <label for="location">Location:</label>
-      <input type="text" id="location" name="location" required>
-
-      <label for="accountType">Account Type:</label>
-      <select id="accountType" name="accountType" onchange="toggleBusinessFields()" required>
-        <option value="customer">Customer</option>
-        <option value="business">Business Owner</option>
-      </select>
-
-      <div id="businessDetails" style="display: none;">
-        <label for="businessName">Business Name:</label>
-        <input type="text" id="businessName" name="businessName" placeholder="Enter your business name">
-
-        <label for="productCategory">Product Category:</label>
-        <input type="text" id="productCategory" name="productCategory" placeholder="What products or services do you offer?">
-
-        <label for="businessDescription">Business Description:</label>
-        <textarea id="businessDescription" name="businessDescription" placeholder="Describe your business"></textarea>
+      <div class="account-toggle">
+        <input type="radio" id="customerAccount" name="accountType" value="customer" checked>
+        <label for="customerAccount">Customer</label>
+        <input type="radio" id="businessAccount" name="accountType" value="business">
+        <label for="businessAccount">Business Owner</label>
       </div>
-
-      <button type="submit">Sign Up</button>
+      
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Your email address" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+        <div class="password-strength"><div class="password-strength-bar"></div></div>
+        
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="City, State" required>
+      </div>
+      
+      <div id="businessDetails" style="display: none;">
+        <div class="form-section">
+          <h3>Business Information</h3>
+          <label for="businessName">Business Name</label>
+          <input type="text" id="businessName" name="businessName" placeholder="Enter your business name">
+          
+          <label for="productCategory">Product Category</label>
+          <select id="productCategory" name="productCategory">
+            <option value="">Select a category</option>
+            <option value="food">Food & Beverages</option>
+            <option value="crafts">Arts & Crafts</option>
+            <option value="services">Professional Services</option>
+            <option value="clothing">Clothing & Accessories</option>
+            <option value="tech">Tech & Electronics</option>
+            <option value="other">Other</option>
+          </select>
+          
+          <label for="businessDescription">Business Description</label>
+          <textarea id="businessDescription" name="businessDescription" placeholder="Tell us about your business and what makes it special"></textarea>
+        </div>
+      </div>
+      
+      <button type="submit">Create Account</button>
+      <p style="text-align: center; margin-top: 20px; color: var(--light-text);">
+        Already have an account? <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">Log In</a>
+      </p>
     </form>
   </main>
-
+  
   <footer class="fade-in">
     <p>&copy; 2025 HomeBazaar. All rights reserved.</p>
   </footer>
-
+  
   <script>
-    function toggleBusinessFields() {
-      const accountType = document.getElementById('accountType').value;
-      const businessDetails = document.getElementById('businessDetails');
-      if (accountType === 'business') {
-        businessDetails.style.display = 'block';
+    // Account type toggle
+    document.querySelectorAll('input[name="accountType"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const businessDetails = document.getElementById('businessDetails');
+        if (this.value === 'business') {
+          businessDetails.style.display = 'block';
+        } else {
+          businessDetails.style.display = 'none';
+        }
+      });
+    });
+    
+    // Password strength meter
+    document.getElementById('password').addEventListener('input', function() {
+      const password = this.value;
+      const strengthBar = document.querySelector('.password-strength-bar');
+      let strength = 0;
+      
+      if (password.length > 5) strength += 20;
+      if (password.length > 8) strength += 20;
+      if (/[A-Z]/.test(password)) strength += 20;
+      if (/[0-9]/.test(password)) strength += 20;
+      if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+      
+      strengthBar.style.width = strength + '%';
+      
+      if (strength < 40) {
+        strengthBar.style.backgroundColor = '#ff4d4d';
+      } else if (strength < 70) {
+        strengthBar.style.backgroundColor = '#ffd166';
       } else {
-        businessDetails.style.display = 'none';
+        strengthBar.style.backgroundColor = '#66bb6a';
       }
-    }
-
+    });
+    
+    // Form submission
     document.getElementById('signupForm').addEventListener('submit', function(event) {
       event.preventDefault();
       
-      const accountType = document.getElementById('accountType').value;
-      let message = 'Account created successfully!';
+      const accountType = document.querySelector('input[name="accountType"]:checked').value;
       
       if (accountType === 'business') {
         const businessName = document.getElementById('businessName').value;
@@ -90,9 +409,70 @@
         }
       }
       
-      alert(message);
-      document.getElementById('signupForm').reset();
+      // Show success message
+      const formContainer = document.getElementById('signupForm');
+      const formContent = formContainer.innerHTML;
+      
+      formContainer.innerHTML = `
+        <div style="text-align: center; padding: 30px 0;">
+          <div style="font-size: 60px; color: var(--primary); margin-bottom: 20px;">✓</div>
+          <h2 style="color: var(--primary-dark); margin-bottom: 15px;">Account Created Successfully!</h2>
+          <p style="color: var(--medium-text); margin-bottom: 25px;">Thank you for joining HomeBazaar. Your account has been created.</p>
+          <a href="index.html" style="display: inline-block; padding: 12px 30px; background-color: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">Return to Homepage</a>
+        </div>
+      `;
+      
+      // For demo purposes, reset form after 5 seconds
+      setTimeout(() => {
+        formContainer.innerHTML = formContent;
+        document.getElementById('signupForm').reset();
+        // Re-attach event listeners
+        attachEventListeners();
+      }, 5000);
     });
+    
+    function attachEventListeners() {
+      // Re-attach account type toggle listeners
+      document.querySelectorAll('input[name="accountType"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          const businessDetails = document.getElementById('businessDetails');
+          if (this.value === 'business') {
+            businessDetails.style.display = 'block';
+          } else {
+            businessDetails.style.display = 'none';
+          }
+        });
+      });
+      
+      // Re-attach password strength meter
+      document.getElementById('password').addEventListener('input', function() {
+        const password = this.value;
+        const strengthBar = document.querySelector('.password-strength-bar');
+        let strength = 0;
+        
+        if (password.length > 5) strength += 20;
+        if (password.length > 8) strength += 20;
+        if (/[A-Z]/.test(password)) strength += 20;
+        if (/[0-9]/.test(password)) strength += 20;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+        
+        strengthBar.style.width = strength + '%';
+        
+        if (strength < 40) {
+          strengthBar.style.backgroundColor = '#ff4d4d';
+        } else if (strength < 70) {
+          strengthBar.style.backgroundColor = '#ffd166';
+        } else {
+          strengthBar.style.backgroundColor = '#66bb6a';
+        }
+      });
+      
+      // Re-attach form submission handler
+      document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Form submission code...
+      });
+    }
   </script>
 </body>
 </html>
